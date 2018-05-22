@@ -35,8 +35,13 @@
     var banner = $("#gdrpBanner");
     $(banner).remove();
     // SET COOKIE HERE
-
-    $("body").prepend(banner);
-    $(banner).css("display", "block");
+    if(document.cookie.indexOf("seenGDRP=true;") == -1){
+      console.log("they haven't been here yet");
+      document.cookie = "seenGDRP=true;";
+      $("body").prepend(banner);
+      $(banner).css("display", "block");
+    } else{
+      console.log("they have already been here");
+    }
   })
 </script>
