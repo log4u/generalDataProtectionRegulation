@@ -1,26 +1,10 @@
 
 <div id="gdrpBanner">
-  <link rel="stylesheet" href="https://www.lung.org/css/materialize.css">
   <style media="screen">
-  #gdrpBanner{
-    display: none;
-    width: 100%;
-  }
-  .gdrpPTag{
-    text-align: center;
-    margin-bottom: none !important;
-    padding: 20px 30px 20px 30px;
-  }
-  .row{
-    margin-bottom: 0;
-  }
-
-  #exOut{
-    color: black;
-    cursor: pointer;
-    position: absolute;
-    right: 20px;
-  }
+    #gdrpBanner{display: none; width: 100%;}
+    .gdrpPTag{text-align: center; margin-bottom: none !important; padding: 20px 30px 20px 30px;}
+    .row{margin-bottom: 0;}
+    #exOut{color: black; cursor: pointer; position: absolute; right: 20px;}
   </style>
   <div class="row">
     <p class="gdrpPTag"><strong>
@@ -34,14 +18,17 @@
   $(document).ready(function(){
     var banner = $("#gdrpBanner");
     $(banner).remove();
-    // SET COOKIE HERE
     if(document.cookie.indexOf("seenGDRP=true;") == -1){
-      console.log("they haven't been here yet");
-      document.cookie = "seenGDRP=true;";
+      // console.log("they haven't been here yet, so display the banner.");
+      // this was the line for the createCookie function that would let you specify a domain. having domain=.lung.org should spread the cookie across lung.org and action.lung.org.
+      // document.cookie = name+"="+value+expires+'; path=/; domain=.lung.org';
+      var CookieDate = new Date;
+      CookieDate.setFullYear(CookieDate.getFullYear() + 3);
+      document.cookie = "seenGDRP=true; expires="+ CookieDate.toGMTString() +"; path=/; domain=.lung.org";
       $("body").prepend(banner);
       $(banner).css("display", "block");
     } else{
-      console.log("they have already been here");
+      // console.log("they have already been here. do not display banner");
     }
   })
 </script>
